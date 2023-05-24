@@ -8,7 +8,7 @@
   "main": "index.js",
   "proxy": "http://localhost:8000",
   "scripts": {
-    "start": "node server/index.js",
+    "start":"node server/index.js",
     "build": "cd client && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

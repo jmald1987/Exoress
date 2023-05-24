@@ -11,7 +11,7 @@ const Table = (props) => {
 
   const DeleteLink = async id => {
     try {
-      const DeleteLink = await fetch(`http://localhost:5000/links/${id}`, {
+      const DeleteLink = await fetch(`http://localhost:8000/links/${id}`, {
         method: "DELETE"
       });
       setURL(URL.filter(URL => links.id !== id));
@@ -25,7 +25,7 @@ const Table = (props) => {
 
   const getLinks = async () => {
     try {
-      const response = await fetch("http://localhost:5000/links");
+      const response = await fetch("http://localhost:8000/links");
       const jsonData = await response.json();
       setURL(jsonData);
       setName(jsonData);
@@ -34,16 +34,16 @@ const Table = (props) => {
     }
   };
 
-  useEffect(() => {
-    getLinks();
-  }, []);
+  // useEffect(() => {
+  //   getLinks();
+  // }, []);
 
-  console.log(Links);
+  // console.log(Links);
 
   return (
     <Fragment>
       {" "}
-      <table class="table mt-5 text-center">
+      <table className="table mt-5 text-center">
         <thead>
           <tr>
             <th>Name</th>
@@ -57,7 +57,7 @@ const Table = (props) => {
             <td>Doe</td>
             <td>john@example.com</td>
           </tr> */}
-          {links.map(link => (
+          {/* {links.map(link => (
             <tr key={link.id}>
               <td>{link.name}</td>
               <td>
@@ -72,7 +72,7 @@ const Table = (props) => {
                 </button>
               </td>
             </tr>
-          ))}
+          ))} */}
         </tbody>
       </table>
     </Fragment>
