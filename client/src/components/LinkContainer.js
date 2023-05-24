@@ -8,7 +8,7 @@ const LinkContainer = () => {
     e.preventDefault();
     try {
       const body = { name, URL };
-      const response = await fetch("http://localhost:5000/todos", {
+      const response = await fetch("http://localhost:8000/links", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
