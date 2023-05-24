@@ -1,10 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
+import {UpdateLink} from "./Forms"
 
-import Forms from "./Form";
+
 
 const Table = (props) => {
-  const [name, setName] = useState("");
-  const [URL, setURL] = useState("");
+  const [data, setData] = useState([]);
+
  
 
   //delete todo function
@@ -14,8 +15,8 @@ const Table = (props) => {
       const DeleteLink = await fetch(`http://localhost:8000/links/${id}`, {
         method: "DELETE"
       });
-      setURL(URL.filter(URL => links.id !== id));
-      setName(name.filter(name => links.id !== id));
+    
+      setData(data.filter(link => link.id !== id));
     } catch (err) {
       console.error(err.message);
       
@@ -27,18 +28,19 @@ const Table = (props) => {
     try {
       const response = await fetch("http://localhost:8000/links");
       const jsonData = await response.json();
-      setURL(jsonData);
-      setName(jsonData);
+      console.log(jsonData)
+      setData(jsonData);
     } catch (err) {
       console.error(err.message);
     }
   };
 
-  // useEffect(() => {
-  //   getLinks();
-  // }, []);
+  useEffect(() => {
+    getLinks();
+    
+  }, []);
 
-  // console.log(Links);
+  
 
   return (
     <Fragment>
@@ -46,23 +48,28 @@ const Table = (props) => {
       <table className="table mt-5 text-center">
         <thead>
           <tr>
+          <th>ID</th>
             <th>Name</th>
             <th>URL</th>
+            <th>Edit</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          {/*<tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>john@example.com</td>
-          </tr> */}
-          {/* {links.map(link => (
+          {data.map(link => (
             <tr key={link.id}>
+              <td>{link.id}</td>
               <td>{link.name}</td>
-              <td>
-                <updateLink link={link} />
-              </td>
+              <td><a href={link.url}>{link.url}</a></td>
+              <td>                
+                {/* <button
+                  className="btn btn-danger"
+                  onClick={() => {UpdateLink}}
+                >
+                  Edit
+                </button> */}
+                broken
+                </td>
               <td>
                 <button
                   className="btn btn-danger"
@@ -72,7 +79,7 @@ const Table = (props) => {
                 </button>
               </td>
             </tr>
-          ))} */}
+          ))}
         </tbody>
       </table>
     </Fragment>
